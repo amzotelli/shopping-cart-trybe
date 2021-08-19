@@ -15,7 +15,7 @@ function createCustomElement(element, className, innerText) {
 function createProductItemElement({
   sku,
   name,
-  image
+  image,
 }) {
   const section = document.createElement('section');
   section.className = 'item';
@@ -39,7 +39,7 @@ function cartItemClickListener(event) {
 function createCartItemElement({
   sku,
   name,
-  salePrice
+  salePrice,
 }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
@@ -52,7 +52,7 @@ const getProductsAPI = async (product = 'computador') => {
   const productsJSON = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${product}`);
   const productsObject = await productsJSON.json();
   return productsObject.results;
-}
+};
 
 const addProducts = async () => {
   const newProducts = await getProductsAPI();
@@ -60,12 +60,12 @@ const addProducts = async () => {
     const newProduct = createProductItemElement({
       sku: product.id,
       name: product.title,
-      image: product.thumbnail
-    })
+      image: product.thumbnail,
+    });
     document.querySelector('.items').appendChild(newProduct);
-  })
-}
+  });
+};
 
 window.onload = () => {
-  addProducts()
+  addProducts();
 };

@@ -32,8 +32,10 @@ function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
 
+//  ------------ requisito 3 
+
 function cartItemClickListener(event) {
-  // 
+  event.target.remove();
 }
 
 function createCartItemElement({

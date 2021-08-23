@@ -34,6 +34,18 @@ function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
 
+//  --------- requisito 5
+
+const addTotalPrice = () => {
+  const cartItens = document.querySelectorAll('.cart__item');
+  let sum = 0;
+  cartItens.forEach((cartItem) => {
+    const priceItem = cartItem.innerText.split('$')[1];
+    sum += parseFloat(priceItem);
+  });
+  document.querySelector('.total-price').innerText = sum;
+};
+
 //  --------- parte requisito 4 
 
 const saveCartList = () => {
@@ -45,6 +57,7 @@ const saveCartList = () => {
 function cartItemClickListener(event) {
   event.target.remove();
   saveCartList();
+  addTotalPrice();
 }
 
 function createCartItemElement({
@@ -93,6 +106,7 @@ const getProductAPI = async (event) => {
   const newCartItem = createCartItemElement(newItem);
   document.querySelector('.cart__items').appendChild(newCartItem);
   saveCartList();
+  addTotalPrice();
 };
 
 const buttonsCart = () => {
@@ -105,9 +119,10 @@ const buttonsCart = () => {
 const getCartInnerHTML = () => {
   cartList.innerHTML = localStorage.getItem('cartItems');
   cartList.addEventListener('click', cartItemClickListener);
+  addTotalPrice();
 };
 
-// -----------
+// ----------- requisito 5 
 
 window.onload = async () => {
   await addProducts();

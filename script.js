@@ -81,8 +81,8 @@ const getProductsAPI = async (product = 'computador') => {
 };
 
 const addProducts = async () => {
-  document.querySelector('.items').innerHTML = '';
   const newProducts = await getProductsAPI();
+  document.querySelector('.items').innerText = '';
   newProducts.forEach((product) => {
     const newProduct = createProductItemElement({
       sku: product.id,

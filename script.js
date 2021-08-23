@@ -81,6 +81,7 @@ const getProductsAPI = async (product = 'computador') => {
 };
 
 const addProducts = async () => {
+  document.querySelector('.items').innerHTML = '';
   const newProducts = await getProductsAPI();
   newProducts.forEach((product) => {
     const newProduct = createProductItemElement({
@@ -132,7 +133,14 @@ const cleanCart = () => {
   });
 };
 
+//  ------- requisito 7
+
+const loadingText = () => {
+  document.querySelector('.items').appendChild(createCustomElement('p', 'loading', 'loading...'));
+};
+
 window.onload = async () => {
+  loadingText();
   await addProducts();
   buttonsCart();
   getCartInnerHTML();

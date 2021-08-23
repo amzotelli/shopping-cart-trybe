@@ -122,10 +122,19 @@ const getCartInnerHTML = () => {
   addTotalPrice();
 };
 
-// ----------- requisito 5 
+// ----------- requisito 6
+
+const cleanCart = () => {
+  const buttonClear = document.querySelector('.empty-cart');
+  buttonClear.addEventListener('click', () => {
+    cartList.innerHTML = '';
+    addTotalPrice();
+  });
+};
 
 window.onload = async () => {
   await addProducts();
   buttonsCart();
   getCartInnerHTML();
+  cleanCart();
 };
